@@ -11,12 +11,10 @@
 
 <%
     // 🔐 Session validation
-    if (session == null || session.getAttribute("role") == null) {
+    if (session == null || session.getAttribute("name") == null) {
         response.sendRedirect("login");
         return;
     }
-
-    String role = (String) session.getAttribute("role");
 %>
 
 <div class="card">
@@ -45,9 +43,10 @@
 
             if (visitors != null && !visitors.isEmpty()) {
                 for (String[] v : visitors) {
+                    String visitorName = v[1]; // 👈 IMPORTANT
         %>
         <tr>
-            <td><%= v[1] %></td>
+            <td><%= visitorName %></td>
             <td><%= v[2] %></td>
 
             <!-- UPDATE PURPOSE -->
@@ -61,9 +60,9 @@
 
             <td><%= v[4] %></td>
 
-            <!-- DELETE (Hidden for ADMIN) -->
+            <!-- DELETE (Hidden ONLY if visitor name is ADMIN) -->
             <td>
-                <% if (!"ADMIN".equalsIgnoreCase(role)) { %>
+                <% if (!"ADMIN".equalsIgnoreCase(visitorName)) { %>
                     <form method="post" action="delete" style="display:inline;">
                         <input type="hidden" name="id" value="<%= v[0] %>">
                         <button type="submit"
@@ -72,7 +71,7 @@
                         </button>
                     </form>
                 <% } else { %>
-                    <span style="color:gray;">Not Allowed</span>
+                    <span style="color:gray;">Protected</span>
                 <% } %>
             </td>
         </tr>
