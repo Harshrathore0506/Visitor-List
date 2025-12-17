@@ -38,5 +38,5 @@ This application manages visitor entries with secure **login, session handling, 
 
 ---
 
-## 🗂️ Project Structure
+
 
