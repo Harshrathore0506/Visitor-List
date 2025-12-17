@@ -6,8 +6,9 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- Group & Artifact -->
     <groupId>com.javaproject</groupId>
-    <artifactId>ROOT</artifactId>
+    <artifactId>app</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
@@ -19,7 +20,7 @@
 
     <dependencies>
 
-        <!-- Servlet API (Provided by Tomcat) -->
+        <!-- Servlet API (Provided by Tomcat at runtime) -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -37,7 +38,8 @@
     </dependencies>
 
     <build>
-        <finalName>ROOT</finalName>
+        <!-- WAR name -->
+        <finalName>app</finalName>
 
         <plugins>
 
