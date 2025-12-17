@@ -9,6 +9,16 @@
 </head>
 <body>
 
+<%
+    // 🔐 Session validation
+    if (session == null || session.getAttribute("role") == null) {
+        response.sendRedirect("login");
+        return;
+    }
+
+    String role = (String) session.getAttribute("role");
+%>
+
 <div class="card">
 
     <!-- 🔹 Top Bar -->
@@ -40,7 +50,7 @@
             <td><%= v[1] %></td>
             <td><%= v[2] %></td>
 
-            <!-- UPDATE -->
+            <!-- UPDATE PURPOSE -->
             <td>
                 <form method="post" action="update">
                     <input type="hidden" name="id" value="<%= v[0] %>">
@@ -51,15 +61,19 @@
 
             <td><%= v[4] %></td>
 
-            <!-- DELETE (POST – FIXED) -->
+            <!-- DELETE (Hidden for ADMIN) -->
             <td>
-                <form method="post" action="delete" style="display:inline;">
-                    <input type="hidden" name="id" value="<%= v[0] %>">
-                    <button type="submit"
-                            onclick="return confirm('Delete this visitor?')">
-                        Delete
-                    </button>
-                </form>
+                <% if (!"ADMIN".equalsIgnoreCase(role)) { %>
+                    <form method="post" action="delete" style="display:inline;">
+                        <input type="hidden" name="id" value="<%= v[0] %>">
+                        <button type="submit"
+                                onclick="return confirm('Delete this visitor?')">
+                            Delete
+                        </button>
+                    </form>
+                <% } else { %>
+                    <span style="color:gray;">Not Allowed</span>
+                <% } %>
             </td>
         </tr>
         <%
