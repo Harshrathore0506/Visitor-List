@@ -17,25 +17,27 @@ public class DeleteVisitorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws IOException {
 
+        System.out.println("DELETE SERVLET CALLED"); // DEBUG
+
         HttpSession session = req.getSession(false);
 
-        // 🔐 Session & Role Check
+        // 🔐 Session & ADMIN check
         if (session == null || !"ADMIN".equals(session.getAttribute("role"))) {
             res.sendRedirect("login");
             return;
         }
 
         String idParam = req.getParameter("id");
-        if (idParam == null) {
+        if (idParam == null || idParam.isBlank()) {
             res.sendRedirect("view");
             return;
         }
 
         try (Connection con = DBConnection.getConnection()) {
 
-            PreparedStatement ps = con.prepareStatement(
-                "DELETE FROM visitors WHERE id = ?"
-            );
+            PreparedStatement ps =
+                con.prepareStatement("DELETE FROM visitors WHERE id = ?");
+
             ps.setInt(1, Integer.parseInt(idParam));
             ps.executeUpdate();
 

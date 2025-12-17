@@ -7,6 +7,7 @@
                         https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
     version="6.0">
 
+    <!-- LOGIN -->
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>com.example.LoginServlet</servlet-class>
@@ -17,6 +18,7 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+    <!-- DASHBOARD -->
     <servlet>
         <servlet-name>DashboardServlet</servlet-name>
         <servlet-class>com.example.DashboardServlet</servlet-class>
@@ -27,15 +29,18 @@
         <url-pattern>/dashboard</url-pattern>
     </servlet-mapping>
 
-<servlet>
-    <servlet-name>DBConnectionServlet</servlet-name>
-    <servlet-class>com.example.DBConnectionServlet</servlet-class>
-</servlet>
+    <!-- DB TEST -->
+    <servlet>
+        <servlet-name>DBConnectionServlet</servlet-name>
+        <servlet-class>com.example.DBConnectionServlet</servlet-class>
+    </servlet>
 
-<servlet-mapping>
-    <servlet-name>DBConnectionServlet</servlet-name>
-    <url-pattern>/db-test</url-pattern>
-</servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DBConnectionServlet</servlet-name>
+        <url-pattern>/db-test</url-pattern>
+    </servlet-mapping>
+
+    <!-- VIEW VISITORS -->
     <servlet>
         <servlet-name>ViewVisitorServlet</servlet-name>
         <servlet-class>com.example.ViewVisitorServlet</servlet-class>
@@ -46,6 +51,7 @@
         <url-pattern>/view</url-pattern>
     </servlet-mapping>
 
+    <!-- ADD VISITOR -->
     <servlet>
         <servlet-name>AddVisitorServlet</servlet-name>
         <servlet-class>com.example.AddVisitorServlet</servlet-class>
@@ -56,6 +62,37 @@
         <url-pattern>/add</url-pattern>
     </servlet-mapping>
 
-    
+    <!-- UPDATE VISITOR -->
+    <servlet>
+        <servlet-name>UpdateVisitorServlet</servlet-name>
+        <servlet-class>com.example.UpdateVisitorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateVisitorServlet</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+
+    <!-- DELETE VISITOR -->
+    <servlet>
+        <servlet-name>DeleteVisitorServlet</servlet-name>
+        <servlet-class>com.example.DeleteVisitorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteVisitorServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <!-- LOGOUT -->
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.example.LogoutServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
 
 </web-app>

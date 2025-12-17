@@ -9,15 +9,16 @@
 </head>
 <body>
 
-<!-- 🔹 Top Bar -->
-
 <div class="card">
-    <h2>Visitor List</h2>
+
+    <!-- 🔹 Top Bar -->
     <div class="top-bar">
-        <a href="login">
-            <button>Logout</button>
-        </a>
+        <form action="logout" method="post">
+            <button type="submit">Logout</button>
+        </form>
     </div>
+
+    <h2>Visitor List</h2>
 
     <table border="1" cellpadding="8" cellspacing="0" width="100%">
         <tr>
@@ -38,6 +39,8 @@
         <tr>
             <td><%= v[1] %></td>
             <td><%= v[2] %></td>
+
+            <!-- UPDATE -->
             <td>
                 <form method="post" action="update">
                     <input type="hidden" name="id" value="<%= v[0] %>">
@@ -45,12 +48,18 @@
                     <button type="submit">Update</button>
                 </form>
             </td>
+
             <td><%= v[4] %></td>
+
+            <!-- DELETE (POST – FIXED) -->
             <td>
-                <a href="delete?id=<%= v[0] %>"
-                   onclick="return confirm('Delete this visitor?')">
-                   Delete
-                </a>
+                <form method="post" action="delete" style="display:inline;">
+                    <input type="hidden" name="id" value="<%= v[0] %>">
+                    <button type="submit"
+                            onclick="return confirm('Delete this visitor?')">
+                        Delete
+                    </button>
+                </form>
             </td>
         </tr>
         <%
@@ -68,6 +77,7 @@
 
     <br>
     <a href="addVisitor.html">Add New Visitor</a>
+
 </div>
 
 </body>
